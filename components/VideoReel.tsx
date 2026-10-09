@@ -8,7 +8,6 @@ export default function VideoReel({ src = "/videos/sidhhartha.mp4", poster = "/v
   const video = useRef<HTMLVideoElement>(null);
   const glow = useRef<HTMLCanvasElement>(null);
   const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   // Dynamic reflection glow: sample the live frame into a tiny canvas, then blur it up behind the frame.
   useEffect(() => {
@@ -38,7 +37,6 @@ export default function VideoReel({ src = "/videos/sidhhartha.mp4", poster = "/v
 
     const play = () => setPlaying(true);
     const pause = () => setPlaying(false);
-    const time = () => setProgress(v.duration ? v.currentTime / v.duration : 0);
 
     const start = () => {
       v.muted = true;
@@ -47,7 +45,6 @@ export default function VideoReel({ src = "/videos/sidhhartha.mp4", poster = "/v
 
     v.addEventListener("play", play);
     v.addEventListener("pause", pause);
-    v.addEventListener("timeupdate", time);
     if (v.readyState >= 3) start();
     else v.addEventListener("canplay", start, { once: true });
     setPlaying(!v.paused);
@@ -55,7 +52,6 @@ export default function VideoReel({ src = "/videos/sidhhartha.mp4", poster = "/v
     return () => {
       v.removeEventListener("play", play);
       v.removeEventListener("pause", pause);
-      v.removeEventListener("timeupdate", time);
       v.removeEventListener("canplay", start);
     };
   }, []);
@@ -66,12 +62,6 @@ export default function VideoReel({ src = "/videos/sidhhartha.mp4", poster = "/v
     if (v.paused) v.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
     else v.pause();
   };
-  const seek = (val: number) => {
-    const v = video.current;
-    if (!v || !v.duration) return;
-    v.currentTime = val * v.duration;
-  };
-
   return (
     <div className={`group relative mx-auto w-full ${className}`}>
       <canvas ref={glow} width={32} height={48} aria-hidden="true" className="absolute -inset-8 -z-10 h-[calc(100%+4rem)] w-[calc(100%+4rem)] scale-110 opacity-70 blur-3xl saturate-150" />
@@ -82,7 +72,6 @@ export default function VideoReel({ src = "/videos/sidhhartha.mp4", poster = "/v
           <button onClick={toggle} className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-charcoal" aria-label={playing ? "Pause reel" : "Play reel"}>
             {playing ? "Pause" : "Play"}
           </button>
-          <input type="range" min={0} max={1} step={0.001} value={progress} onChange={(e) => seek(Number(e.target.value))} aria-label="Reel position" className="h-0.5 flex-1 cursor-pointer accent-white" />
         </div>
       </div>
     </div>
