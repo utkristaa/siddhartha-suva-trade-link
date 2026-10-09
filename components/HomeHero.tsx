@@ -27,9 +27,12 @@ function StaggerWord({ text, className, delay = 0 }: { text: string; className?:
 
 export default function HomeHero() {
   return (
-    <section className="relative flex min-h-[92vh] items-end overflow-visible px-6 pb-12 pt-28 md:items-center md:pb-16 md:pt-32">
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.8),transparent_35%),linear-gradient(90deg,rgba(245,241,235,0.95),rgba(245,241,235,0.7))]" aria-hidden="true" />
-      <div className="pointer-events-none absolute bottom-[-8%] right-[-6%] z-0 h-[72vh] w-[78vw] opacity-95 md:bottom-[-10%] md:right-[-8%] md:h-[76vh] md:w-[60vw]">
+    <section className="relative flex min-h-[92svh] items-center overflow-hidden bg-[linear-gradient(135deg,#fbf9f5_0%,#f5f1eb_58%,#eee8df_100%)] px-6 pb-16 pt-28 md:min-h-[88vh] md:pt-32">
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_22%_18%,rgba(255,255,255,0.72),transparent_52%)]" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-y-[12%] left-[18%] right-[-24%] z-0 opacity-55 mix-blend-multiply md:inset-y-[-4%] md:left-[30%] md:right-[-8%] md:opacity-70"
+        style={{ maskImage: "linear-gradient(90deg, transparent 0%, black 28%, black 76%, transparent 100%)", WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 28%, black 76%, transparent 100%)" }}
+      >
         <PaintSpiral />
       </div>
 
@@ -41,13 +44,12 @@ export default function HomeHero() {
       </p>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl md:pl-14">
-        <h1 className="serif-display text-[clamp(3.3rem,12vw,12rem)] leading-[0.74] text-charcoal">
-          <StaggerWord text="SIDDHARTHA" />
-          <br />
-          <span className="mt-2 block md:mt-1 md:pl-[12vw]">
+        <h1 className="serif-display text-[clamp(2.7rem,10vw,9rem)] leading-[0.82] text-charcoal">
+          <StaggerWord text="SIDDHARTHA" className="block" />
+          <span className="mt-2 flex flex-wrap items-center gap-x-2 md:mt-1 md:gap-x-[2vw] md:pl-[12vw]">
             <StaggerWord text="SUVA" delay={0.55} />
-            <span className="mx-[2vw] inline-block h-[0.06em] w-[7vw] max-w-[90px] bg-charcoal align-middle" aria-hidden="true" />
-            <StaggerWord text="TRADE LINK" delay={0.75} className="text-[0.48em] italic" />
+            <span className="inline-block h-[0.06em] w-[clamp(24px,7vw,90px)] bg-charcoal align-middle" aria-hidden="true" />
+            <StaggerWord text="TRADE LINK" delay={0.75} className="text-[0.44em] italic" />
           </span>
         </h1>
 
