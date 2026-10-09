@@ -35,7 +35,7 @@ export default function RoomCarousel({ rooms }: { rooms: Room[] }) {
       const frameScale = lastFrame ? Math.min((now - lastFrame) / (1000 / 60), 2) : 1;
       lastFrame = now;
       if (!st.drag) {
-        st.x += (st.vx - 0.24) * frameScale;
+        st.x += (st.vx - 0.48) * frameScale;
         st.vx *= Math.pow(0.94, frameScale);
         st.x = ((st.x % cycle) + cycle) % cycle;
       }
