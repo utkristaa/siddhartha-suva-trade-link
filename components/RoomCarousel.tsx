@@ -20,14 +20,23 @@ export default function RoomCarousel({ rooms }: { rooms: Room[] }) {
     if (!el) return;
     const st = s.current;
     let raf = 0;
+    let lastFrame = 0;
+    let visible = false;
 
-    const tick = () => {
+    const tick = (now: number) => {
+      if (!visible) {
+        raf = 0;
+        lastFrame = 0;
+        return;
+      }
       const W = el.clientWidth;
       const stride = CARD_W + GAP;
       const cycle = rooms.length * stride;
+      const frameScale = lastFrame ? Math.min((now - lastFrame) / (1000 / 60), 2) : 1;
+      lastFrame = now;
       if (!st.drag) {
-        st.x += st.vx - 0.24;
-        st.vx *= 0.94;
+        st.x += (st.vx - 0.24) * frameScale;
+        st.vx *= Math.pow(0.94, frameScale);
         st.x = ((st.x % cycle) + cycle) % cycle;
       }
       rooms.forEach((_, i) => {
@@ -40,8 +49,20 @@ export default function RoomCarousel({ rooms }: { rooms: Room[] }) {
       });
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && !raf) raf = requestAnimationFrame(tick);
+      else if (!visible && raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+        lastFrame = 0;
+      }
+    }, { rootMargin: "100px 0px" });
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf);
+    };
   }, [rooms]);
 
   useEffect(() => {
@@ -104,7 +125,7 @@ export default function RoomCarousel({ rooms }: { rooms: Room[] }) {
                 className="relative h-full w-full overflow-hidden rounded-md bg-charcoal shadow-[0_24px_48px_-32px_rgba(0,0,0,0.65)]"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={r.src} alt={r.title} draggable={false} className="pointer-events-none h-full w-full object-cover" />
+                <img src={r.src} alt={r.title} loading="lazy" decoding="async" draggable={false} className="pointer-events-none h-full w-full object-cover" />
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_8%,rgba(255,236,190,0.35),transparent_55%)] mix-blend-soft-light" />
                 <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-5 pb-5 pt-16 text-white">
                   <p className="serif-display text-2xl">{r.title}</p>

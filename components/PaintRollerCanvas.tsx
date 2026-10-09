@@ -38,6 +38,34 @@ export default function PaintRollerCanvas() {
     let lastScrollY = window.scrollY;
     let dragging = false;
     let hue = PALETTE[0];
+    let dryRaf = 0;
+    let dryUntil = 0;
+    let lastDry = 0;
+
+    const dry = (now: number) => {
+      if (now - lastDry >= 1000 / 30) {
+        ctx.save();
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.globalAlpha = 1 - Math.pow(0.988, (now - lastDry) / (1000 / 60));
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, w, h);
+        ctx.restore();
+        lastDry = now;
+      }
+      if (now < dryUntil) {
+        dryRaf = requestAnimationFrame(dry);
+      } else {
+        ctx.clearRect(0, 0, w, h);
+        dryRaf = 0;
+      }
+    };
+    const scheduleDrying = () => {
+      dryUntil = performance.now() + 2800;
+      if (!dryRaf) {
+        lastDry = performance.now();
+        dryRaf = requestAnimationFrame(dry);
+      }
+    };
 
     const stamp = (x0: number, y0: number, x1: number, y1: number, width: number, color: string, alpha: number) => {
       const dx = x1 - x0, dy = y1 - y0;
@@ -72,6 +100,7 @@ export default function PaintRollerCanvas() {
       ctx.fillStyle = g;
       ctx.fillRect(0, -width / 2, dist + 2, width);
       ctx.restore();
+      scheduleDrying();
     };
 
     const nextColor = () => {
@@ -111,19 +140,6 @@ export default function PaintRollerCanvas() {
       if (Math.abs(dy) > 90) nextColor();
     };
 
-    let raf = 0;
-    const dry = () => {
-      // Dry slowly so lower layers re-emerge
-      ctx.save();
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.globalAlpha = 0.012;
-      ctx.fillStyle = "#000";
-      ctx.fillRect(0, 0, w, h);
-      ctx.restore();
-      raf = requestAnimationFrame(dry);
-    };
-    raf = requestAnimationFrame(dry);
-
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });
     window.addEventListener("pointerup", onUp, { passive: true });
@@ -131,7 +147,7 @@ export default function PaintRollerCanvas() {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", resize);
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(dryRaf);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);

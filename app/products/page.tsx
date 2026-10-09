@@ -16,8 +16,8 @@ export default function ProductsPage() {
   return (
     <div className="px-6 pb-32 pt-36">
       <div className="mx-auto max-w-7xl">
-        <h1 className="serif-display text-[clamp(3.4rem,11vw,10rem)]">Flagship buckets</h1>
-        <p className="mt-6 max-w-md text-sm leading-relaxed text-black/65">Genuine Berger and Asian Paints, chosen for how they look on the wall and how long they last. Tap a bucket to inquire on WhatsApp.</p>
+        <h1 className="serif-display text-[clamp(3.4rem,11vw,10rem)]">Paints for your home</h1>
+        <p className="mt-6 max-w-md text-sm leading-relaxed text-black/65">Browse Berger and Asian Paints. Tell us what you are painting and we can help you compare finishes.</p>
 
         <div className="mt-20 grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-12">
           {products.map((p, i) => (

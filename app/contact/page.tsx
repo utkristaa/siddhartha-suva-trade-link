@@ -4,10 +4,10 @@ import { PHONES, whatsappLink } from "@/lib/whatsapp";
 export const metadata = { title: "Contact | Siddhartha Suva Trade Link" };
 
 const prompts = [
-  { label: "Ask about interior emulsions", msg: "Hello Siddhartha Suva Trade Link, I would like to inquire about your interior emulsions for my home." },
-  { label: "Book a colour consultation", msg: "Hello Siddhartha Suva Trade Link, I would like to book a colour consultation." },
-  { label: "Exterior weather protection", msg: "Hello Siddhartha Suva Trade Link, I would like advice on exterior paint with weather protection." },
-  { label: "Price a full project", msg: "Hello Siddhartha Suva Trade Link, I would like a quotation for a full painting project." },
+  { label: "Choose paint for an interior", msg: "Hello, I am choosing paint for an interior room. Could you help me compare a few options?" },
+  { label: "Arrange a colour consultation", msg: "Hello, could I arrange a colour consultation for my home?" },
+  { label: "Protect an exterior wall", msg: "Hello, I need paint for an exterior wall. Could you recommend a weather-resistant option?" },
+  { label: "Get a project estimate", msg: "Hello, could I get an estimate for a painting project?" },
 ];
 
 export default function ContactPage() {
@@ -24,7 +24,7 @@ export default function ContactPage() {
             <div>
               <dt className="text-black/55">Other phone lines</dt>
               <dd className="mt-1 flex flex-wrap gap-x-5 gap-y-2 font-sans text-xl font-semibold tabular-nums tracking-normal sm:text-2xl">
-                {PHONES.secondary.map((p, i) => (
+                {PHONES.secondary.map((p) => (
                   <a key={p} className="break-words" href={`tel:${p}`}>{p}</a>
                 ))}
               </dd>
@@ -37,18 +37,18 @@ export default function ContactPage() {
                   href={whatsappLink(p.msg)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between border border-charcoal px-5 py-4 text-sm font-medium transition hover:bg-charcoal hover:text-white"
+                  className="flex items-center justify-between gap-3 border border-charcoal px-5 py-4 text-sm font-medium transition hover:bg-charcoal hover:text-white"
                 >
-                  {p.label}
-                  <span aria-hidden="true">Open WhatsApp</span>
+                  <span className="min-w-0">{p.label}</span>
+                  <span aria-hidden="true" className="shrink-0 text-xs">WhatsApp</span>
                 </a>
               </li>
             ))}
           </ul>
         </div>
         <div className="md:col-span-7">
-          <h2 className="serif-display text-4xl md:text-5xl">Leave a colour trail</h2>
-          <p className="mb-6 mt-3 max-w-md text-sm text-black/65">Sketch the colours you are imagining, save the image and send it to us on WhatsApp.</p>
+          <h2 className="serif-display text-4xl md:text-5xl">Show us your colour idea</h2>
+          <p className="mb-6 mt-3 max-w-md text-sm text-black/65">Sketch a few colours, save your palette, and send it to us on WhatsApp.</p>
           <BrushPad />
         </div>
       </div>

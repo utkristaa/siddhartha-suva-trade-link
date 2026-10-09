@@ -5,9 +5,9 @@ import { useRef } from "react";
 type Finish = { id: string; name: string; blurb: string; base: string; kind: "matte" | "sheen" | "shield" };
 
 const finishes: Finish[] = [
-  { id: "velvet", name: "Velvet matte", blurb: "Soft, light-absorbing colour that hides small wall flaws and calms a room.", base: "#7E9C84", kind: "matte" },
-  { id: "sheen", name: "Luxury high sheen", blurb: "A smooth reflective skin that catches lamplight and deepens the colour.", base: "#3E6A8A", kind: "sheen" },
-  { id: "shield", name: "Exterior PU shield", blurb: "A tough outer coat where rain beads up and runs off the wall.", base: "#C0553F", kind: "shield" },
+  { id: "velvet", name: "Velvet matte", blurb: "A soft, low-sheen finish that helps disguise small marks.", base: "#7E9C84", kind: "matte" },
+  { id: "sheen", name: "Luxury high sheen", blurb: "A smooth, reflective finish that catches the light.", base: "#3E6A8A", kind: "sheen" },
+  { id: "shield", name: "Exterior PU shield", blurb: "A weather-resistant finish for walls exposed to sun and rain.", base: "#C0553F", kind: "shield" },
 ];
 
 function Surface({ f }: { f: Finish }) {
@@ -24,7 +24,7 @@ function Surface({ f }: { f: Finish }) {
     <div
       ref={ref}
       onPointerMove={move}
-      className="relative h-[420px] w-[320px] shrink-0 snap-center overflow-hidden"
+      className="relative aspect-[4/5] w-[min(82vw,320px)] shrink-0 snap-center overflow-hidden sm:aspect-[3/4]"
       style={{ background: f.base, ["--mx" as string]: "50%", ["--my" as string]: "30%" }}
     >
       {f.kind === "matte" && (
@@ -69,7 +69,7 @@ function Surface({ f }: { f: Finish }) {
 
 export default function TextureCarousel() {
   return (
-    <div className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4" role="region" aria-label="Finish effects. Move your pointer over a card to move the light.">
+    <div className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4" role="region" aria-label="Paint finish samples">
       {finishes.map((f) => <Surface key={f.id} f={f} />)}
     </div>
   );

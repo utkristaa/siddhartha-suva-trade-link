@@ -6,8 +6,8 @@ export default function Footer() {
     <footer className="relative z-10 bg-charcoal px-6 py-16 text-white">
       <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-12">
         <div className="md:col-span-6">
-          <p className="serif-display text-5xl md:text-7xl">Siddhartha Suva Trade Link</p>
-          <p className="mt-4 max-w-sm text-sm text-white/60">Berger and Asian Paints flagship collections, with colour advice from the people behind the counter.</p>
+          <p className="serif-display text-4xl sm:text-5xl md:text-7xl">Siddhartha Suva Trade Link</p>
+          <p className="mt-4 max-w-sm text-sm text-white/60">Berger and Asian Paints, with practical advice on colour and finish from our team.</p>
         </div>
         <div className="md:col-span-3">
           <p className="text-sm font-semibold">Pages</p>

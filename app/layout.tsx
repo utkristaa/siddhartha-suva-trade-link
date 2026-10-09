@@ -12,7 +12,7 @@ const sans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Siddhartha Suva Trade Link | Premium Paints",
-  description: "Berger and Asian Paints flagship collections, colour consultation and interior finishes from Siddhartha Suva Trade Link.",
+  description: "Browse Berger and Asian Paints at Siddhartha Suva Trade Link. Get practical help choosing colours, finishes and paint for your home.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

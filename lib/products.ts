@@ -19,7 +19,7 @@ export const products: Product[] = [
     tag: "BreatheEasy Luxury",
     image: "/products/berger-silk-breatheeasy.png",
     glow: "#3E6A8A",
-    note: "A soft silk finish for living rooms and bedrooms, made for walls you live beside.",
+    note: "A smooth, washable finish for living rooms and bedrooms.",
     inquiryName: "Berger Silk BreatheEasy (Luxury Interior Emulsion)",
   },
   {
@@ -30,7 +30,7 @@ export const products: Product[] = [
     tag: "PU Shield",
     image: "/products/berger-weathercoat-long-life.png",
     glow: "#C0553F",
-    note: "A polyurethane-reinforced exterior coat built for monsoon, sun and dust.",
+    note: "An exterior finish made to stand up to strong sun, rain and dust.",
     inquiryName: "Berger Weathercoat Long Life (Exterior Emulsion with PU)",
   },
   {
@@ -41,7 +41,7 @@ export const products: Product[] = [
     tag: "High Sheen",
     image: "/products/berger-family.png",
     glow: "#D9A441",
-    note: "The everyday Berger range: washable, anti-dust, glamorous sheen and value finishes.",
+    note: "Everyday Berger options, from washable finishes to anti-dust and high-sheen paints.",
     inquiryName: "Berger Easy Clean / Glamor / Anti Dust / Bison range",
   },
   {
@@ -63,7 +63,7 @@ export const products: Product[] = [
     tag: "Weather Guard",
     image: "/products/asian-apex-ultima.png",
     glow: "#7E9C84",
-    note: "Premium exterior emulsion for walls that face sun, rain and dust.",
+    note: "A durable exterior finish for walls exposed to changing weather.",
     inquiryName: "Asian Paints Apex Ultima (Exterior Emulsion)",
   },
   {
@@ -74,7 +74,7 @@ export const products: Product[] = [
     tag: "Weather Guard",
     image: "/products/asian-ace.png",
     glow: "#B9A4D9",
-    note: "A dependable exterior emulsion for lasting colour at a sensible price.",
+    note: "A straightforward exterior option for everyday home projects.",
     inquiryName: "Asian Paints Ace (Exterior Emulsion)",
   },
 ];

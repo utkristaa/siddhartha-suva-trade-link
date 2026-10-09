@@ -12,14 +12,14 @@ export default function PortfolioPage() {
         <div aria-hidden="true" className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 via-transparent to-black/15" />
         <div className="relative z-10 mx-auto w-full max-w-7xl">
           <h1 className="serif-display max-w-4xl text-[clamp(3.6rem,11vw,10rem)]">Portfolio</h1>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/85 sm:text-base">A moving look at colour, finish and the rooms they bring to life.</p>
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/85 sm:text-base">Room colour and finishes, seen in the spaces they were made for.</p>
         </div>
       </section>
 
       <section className="px-6 py-32">
         <div className="mx-auto max-w-7xl">
           <h2 className="serif-display text-[clamp(2.6rem,6.5vw,6rem)]">Finishes you can feel</h2>
-          <p className="mt-4 mb-12 max-w-md text-sm text-black/65">Move your pointer across each surface to move the light and see how the finish responds.</p>
+          <p className="mt-4 mb-12 max-w-md text-sm text-black/65">Three finishes, each with its own way of catching the light.</p>
           <TextureCarousel />
         </div>
       </section>

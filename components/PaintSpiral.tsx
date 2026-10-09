@@ -1,12 +1,12 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 const COLORS = ["#3E6A8A", "#C0553F", "#D9A441", "#7E9C84", "#B9A4D9"];
 const ARMS = 5;
-const PER_ARM = 760;
+const PER_ARM = 520;
 
 function makeDot() {
   const c = document.createElement("canvas");
@@ -23,61 +23,75 @@ function makeDot() {
 
 function Spiral() {
   const group = useRef<THREE.Group>(null);
-  const points = useRef<THREE.Points>(null);
+  const pointer = useRef({ x: 0, y: 0 });
+  const visible = useRef(false);
+  const { gl, invalidate } = useThree();
 
-  const { positions, colors, base, texture } = useMemo(() => {
+  const { positions, colors, texture } = useMemo(() => {
     const total = ARMS * PER_ARM;
     const positions = new Float32Array(total * 3);
     const colors = new Float32Array(total * 3);
-    const base = new Float32Array(total * 3); // t, arm, seed
     const col = new THREE.Color();
     for (let a = 0; a < ARMS; a++) {
       col.set(COLORS[a]);
       for (let i = 0; i < PER_ARM; i++) {
         const k = a * PER_ARM + i;
-        base[k * 3] = i / PER_ARM;
-        base[k * 3 + 1] = a;
-        base[k * 3 + 2] = Math.random();
+        const u = i / PER_ARM;
+        const seed = Math.random();
+        const angle = u * Math.PI * 5.2 + (a / ARMS) * Math.PI * 2;
+        const radius = 0.25 + u * 2.85 + (seed - 0.5) * 0.5 * (0.4 + u);
+        positions[k * 3] = Math.cos(angle) * radius;
+        positions[k * 3 + 1] = Math.sin(angle) * radius;
+        positions[k * 3 + 2] = (u - 0.5) * 3.4 + (seed - 0.5) * 1.4 + Math.sin(angle) * 0.2;
         const shade = 0.82 + Math.random() * 0.3;
         colors[k * 3] = col.r * shade;
         colors[k * 3 + 1] = col.g * shade;
         colors[k * 3 + 2] = col.b * shade;
       }
     }
-    return { positions, colors, base, texture: makeDot() };
+    return { positions, colors, texture: makeDot() };
   }, []);
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let timer: number | null = null;
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.current.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
+      if (visible.current) invalidate();
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible.current = entry.isIntersecting;
+      if (entry.isIntersecting) {
+        invalidate();
+        if (!reducedMotion && timer === null) timer = window.setInterval(invalidate, 1000 / 24);
+      } else if (timer !== null) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    }, { rootMargin: "80px" });
+
+    observer.observe(canvas);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    return () => {
+      observer.disconnect();
+      if (timer !== null) window.clearInterval(timer);
+      window.removeEventListener("pointermove", onPointerMove);
+    };
+  }, [gl, invalidate]);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
-    const pos = points.current!.geometry.attributes.position as THREE.BufferAttribute;
-    const px = state.pointer.x;
-    const py = state.pointer.y;
-    for (let k = 0; k < ARMS * PER_ARM; k++) {
-      const u = base[k * 3];
-      const arm = base[k * 3 + 1];
-      const seed = base[k * 3 + 2];
-      const angle = u * Math.PI * 5.2 + (arm / ARMS) * Math.PI * 2 + t * 0.35;
-      const radius = 0.25 + u * 2.35 + Math.sin(t * 0.9 + u * 9 + arm) * 0.09 * u;
-      const spread = (seed - 0.5) * 0.16 * (0.4 + u);
-      let x = Math.cos(angle) * (radius + spread);
-      let y = Math.sin(angle) * (radius + spread);
-      const z = (u - 0.5) * 2.4 + Math.sin(t * 0.6 + angle) * 0.18 + spread;
-      const dx = px * 2.6 - x;
-      const dy = py * 2.6 - y;
-      const d = Math.hypot(dx, dy);
-      const pull = Math.exp(-d * 1.2) * 0.35;
-      x += dx * pull;
-      y += dy * pull;
-      pos.setXYZ(k, x, y, z);
-    }
-    pos.needsUpdate = true;
-    group.current!.rotation.y = THREE.MathUtils.lerp(group.current!.rotation.y, px * 0.45, 0.04);
-    group.current!.rotation.x = THREE.MathUtils.lerp(group.current!.rotation.x, -py * 0.3, 0.04);
+    group.current!.rotation.y = THREE.MathUtils.lerp(group.current!.rotation.y, pointer.current.x * 0.4 + Math.sin(t * 0.16) * 0.08, 0.08);
+    group.current!.rotation.x = THREE.MathUtils.lerp(group.current!.rotation.x, -pointer.current.y * 0.28 + Math.cos(t * 0.13) * 0.04, 0.08);
+    group.current!.rotation.z = Math.sin(t * 0.09) * 0.035;
   });
 
   return (
     <group ref={group}>
-      <points ref={points}>
+      <points>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" array={positions} count={positions.length / 3} itemSize={3} />
           <bufferAttribute attach="attributes-color" array={colors} count={colors.length / 3} itemSize={3} />
@@ -91,7 +105,7 @@ function Spiral() {
 export default function PaintSpiral() {
   return (
     <div className="h-full w-full" role="img" aria-label="Interactive spiral of flowing paint colour">
-      <Canvas camera={{ position: [0, 0, 6.2], fov: 45 }} dpr={[1, 2]}>
+      <Canvas frameloop="demand" camera={{ position: [0, 0, 7.2], fov: 50 }} dpr={[1, 1.5]}>
         <Spiral />
       </Canvas>
     </div>

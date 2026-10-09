@@ -14,9 +14,9 @@ function StaggerWord({ text, className, delay = 0 }: { text: string; className?:
           key={i}
           aria-hidden="true"
           className="inline-block"
-          initial={{ opacity: 0, y: "0.5em", letterSpacing: "0.5em" }}
-          animate={{ opacity: 1, y: 0, letterSpacing: "-0.01em" }}
-          transition={{ delay: delay + i * 0.05, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: "0.4em" }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: delay + i * 0.035, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
           {ch === " " ? "\u00A0" : ch}
         </motion.span>
@@ -40,11 +40,11 @@ export default function HomeHero() {
         className="absolute left-3 top-1/2 z-10 hidden -translate-y-1/2 text-sm font-medium tracking-[0.4em] text-black/60 md:block"
         style={{ writingMode: "vertical-rl", transform: "translateY(-50%) rotate(180deg)" }}
       >
-        A PLAYGROUND OF PURE COLOUR.
+        Find a colour you will love living with.
       </p>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl md:pl-14">
-        <h1 className="serif-display text-[clamp(2.7rem,10vw,9rem)] leading-[0.82] text-charcoal">
+        <h1 className="serif-display text-5xl leading-[0.82] text-charcoal sm:text-7xl lg:text-9xl">
           <StaggerWord text="SIDDHARTHA" className="block" />
           <span className="mt-2 flex flex-wrap items-center gap-x-2 md:mt-1 md:gap-x-[2vw] md:pl-[12vw]">
             <StaggerWord text="SUVA" delay={0.55} />
@@ -54,7 +54,7 @@ export default function HomeHero() {
         </h1>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8, duration: 1 }} className="mt-8 flex flex-wrap items-center gap-5 md:ml-[12vw]">
-          <p className="max-w-xs text-sm leading-relaxed text-black/70 md:hidden">A PLAYGROUND OF PURE COLOUR.</p>
+          <p className="max-w-xs text-sm leading-relaxed text-black/70 md:hidden">Find a colour you will love living with.</p>
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="rounded-full bg-charcoal px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-black">
             Direct Inquiry
           </a>
