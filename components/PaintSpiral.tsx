@@ -22,6 +22,7 @@ function makeDot() {
 }
 
 function Spiral() {
+  const group = useRef<THREE.Group>(null);
   const points = useRef<THREE.Points>(null);
 
   const { positions, colors, base, texture } = useMemo(() => {
@@ -55,31 +56,42 @@ function Spiral() {
       const u = base[k * 3];
       const arm = base[k * 3 + 1];
       const seed = base[k * 3 + 2];
-      const angle = u * Math.PI * 5.2 + (arm / ARMS) * Math.PI * 2 + t * 0.035;
-      const radius = 0.25 + u * 2.2 + Math.sin(t * 0.55 + u * 9 + arm) * 0.055 * u;
-      const spread = (seed - 0.5) * 0.11 * (0.4 + u);
-      const x = Math.cos(angle) * (radius + spread);
-      const y = Math.sin(angle) * (radius + spread);
-      pos.setXYZ(k, x, y, 0);
+      const angle = u * Math.PI * 5.2 + (arm / ARMS) * Math.PI * 2 + t * 0.35;
+      const radius = 0.25 + u * 2.35 + Math.sin(t * 0.9 + u * 9 + arm) * 0.09 * u;
+      const spread = (seed - 0.5) * 0.16 * (0.4 + u);
+      let x = Math.cos(angle) * (radius + spread);
+      let y = Math.sin(angle) * (radius + spread);
+      const z = (u - 0.5) * 2.4 + Math.sin(t * 0.6 + angle) * 0.18 + spread;
+      const dx = px * 2.6 - x;
+      const dy = py * 2.6 - y;
+      const d = Math.hypot(dx, dy);
+      const pull = Math.exp(-d * 1.2) * 0.35;
+      x += dx * pull;
+      y += dy * pull;
+      pos.setXYZ(k, x, y, z);
     }
     pos.needsUpdate = true;
+    group.current!.rotation.y = THREE.MathUtils.lerp(group.current!.rotation.y, px * 0.45, 0.04);
+    group.current!.rotation.x = THREE.MathUtils.lerp(group.current!.rotation.x, -py * 0.3, 0.04);
   });
 
   return (
-    <points ref={points}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={positions.length / 3} itemSize={3} />
-        <bufferAttribute attach="attributes-color" array={colors} count={colors.length / 3} itemSize={3} />
-      </bufferGeometry>
-      <pointsMaterial size={0.13} map={texture} vertexColors transparent opacity={0.84} depthWrite={false} sizeAttenuation alphaTest={0.01} />
-    </points>
+    <group ref={group}>
+      <points ref={points}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" array={positions} count={positions.length / 3} itemSize={3} />
+          <bufferAttribute attach="attributes-color" array={colors} count={colors.length / 3} itemSize={3} />
+        </bufferGeometry>
+        <pointsMaterial size={0.2} map={texture} vertexColors transparent depthWrite={false} sizeAttenuation alphaTest={0.01} />
+      </points>
+    </group>
   );
 }
 
 export default function PaintSpiral() {
   return (
     <div className="h-full w-full" role="img" aria-label="Interactive spiral of flowing paint colour">
-      <Canvas orthographic camera={{ position: [0, 0, 10], zoom: 108 }} dpr={[1, 1.5]}>
+      <Canvas camera={{ position: [0, 0, 6.2], fov: 45 }} dpr={[1, 2]}>
         <Spiral />
       </Canvas>
     </div>

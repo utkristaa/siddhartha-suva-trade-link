@@ -30,8 +30,8 @@ export default function HomeHero() {
     <section className="relative flex min-h-[92svh] items-center overflow-hidden bg-[linear-gradient(135deg,#fbf9f5_0%,#f5f1eb_58%,#eee8df_100%)] px-6 pb-16 pt-28 md:min-h-[88vh] md:pt-32">
       <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_22%_18%,rgba(255,255,255,0.72),transparent_52%)]" aria-hidden="true" />
       <div
-        className="pointer-events-none absolute inset-y-[12%] left-[18%] right-[-24%] z-0 opacity-55 mix-blend-multiply md:inset-y-[-4%] md:left-[30%] md:right-[-8%] md:opacity-70"
-        style={{ maskImage: "linear-gradient(90deg, transparent 0%, black 28%, black 76%, transparent 100%)", WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 28%, black 76%, transparent 100%)" }}
+        className="pointer-events-none absolute inset-y-[-8%] left-[8%] right-[-22%] z-0 opacity-95 mix-blend-multiply md:inset-y-[-18%] md:left-[23%] md:right-[-15%]"
+        style={{ maskImage: "linear-gradient(90deg, transparent 0%, black 18%, black 88%, transparent 100%)", WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 18%, black 88%, transparent 100%)" }}
       >
         <PaintSpiral />
       </div>
