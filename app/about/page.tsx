@@ -5,7 +5,7 @@ export const metadata = { title: "About Us | Siddhartha Suva Trade Link" };
 const team = [
   { name: "Sindhu Adhikari", role: "Colour Consultant", photo: "/team/sindhu-adhikari.jpg", position: "50% 42%" },
   { name: "Utkrista Adhikari", role: "Paint Specialist", photo: "/team/utkrista-adhikari.jpg", position: "72% center" },
-  { name: "Aryan Adhikari", role: "Store Assistant", photo: "/team/aryan-adhikari.jpg", position: "50% 38%" },
+  { name: "Aryan Adhikari", role: "Paint Consultant", photo: "/team/aryan-adhikari.jpg", position: "50% 38%" },
 ];
 
 const story = [
