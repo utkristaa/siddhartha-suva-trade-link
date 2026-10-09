@@ -53,20 +53,26 @@ export default function Navbar() {
           })}
         </ul>
         <button
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-charcoal text-white transition-colors hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen((v) => !v)}
         >
-          <span className={`h-px w-6 bg-black transition ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
-          <span className={`h-px w-6 bg-black transition ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
+          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          <span aria-hidden="true" className="flex w-5 flex-col gap-[5px]">
+            <span className={`h-0.5 w-full rounded-full bg-current transition-transform duration-200 ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
+            <span className={`h-0.5 w-full rounded-full bg-current transition-opacity duration-200 ${open ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 w-full rounded-full bg-current transition-transform duration-200 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
+          </span>
         </button>
       </nav>
       {open && (
         <motion.ul
+          id="mobile-navigation"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute top-full mt-2 w-[calc(100%-2rem)] max-w-5xl rounded-3xl border border-black/10 bg-white/95 p-3 backdrop-blur-xl md:hidden"
+          className="absolute top-full mt-2 w-[calc(100%-2rem)] max-w-5xl rounded-3xl border border-black/10 bg-white/95 p-3 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.45)] backdrop-blur-xl md:hidden"
         >
           {links.map((l) => (
             <li key={l.href}>

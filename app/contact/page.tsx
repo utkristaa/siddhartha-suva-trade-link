@@ -13,9 +13,9 @@ const prompts = [
 export default function ContactPage() {
   return (
     <div className="px-6 pb-32 pt-36">
-      <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <h1 className="serif-display text-[clamp(3.4rem,9vw,8rem)]">Start a conversation</h1>
+      <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-1 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <h1 className="serif-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">Start a conversation</h1>
           <dl className="mt-10 space-y-6 text-sm">
             <div>
               <dt className="text-black/55">Primary contact</dt>
@@ -50,7 +50,7 @@ export default function ContactPage() {
             ))}
           </ul>
         </div>
-        <div className="md:col-span-7">
+        <div className="lg:col-span-7">
           <h2 className="serif-display text-4xl md:text-5xl">Show us your colour idea</h2>
           <p className="mb-6 mt-3 max-w-md text-sm text-black/65">Sketch a few colours, save your palette, and send it to us on WhatsApp.</p>
           <BrushPad />

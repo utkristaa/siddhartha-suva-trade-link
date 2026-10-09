@@ -44,8 +44,8 @@ export default function HomeHero() {
       </p>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl md:pl-14">
-        <h1 className="serif-display text-5xl leading-[0.82] text-charcoal sm:text-7xl lg:text-9xl">
-          <StaggerWord text="SIDDHARTHA" className="block" />
+        <h1 className="serif-display text-4xl leading-[0.82] text-charcoal sm:text-7xl lg:text-9xl">
+          <StaggerWord text="SIDDHARTHA" className="block whitespace-nowrap" />
           <span className="mt-2 flex flex-wrap items-center gap-x-2 md:mt-1 md:gap-x-[2vw] md:pl-[12vw]">
             <StaggerWord text="SUVA" delay={0.55} />
             <span className="inline-block h-[0.06em] w-[clamp(24px,7vw,90px)] bg-charcoal align-middle" aria-hidden="true" />

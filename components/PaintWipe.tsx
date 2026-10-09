@@ -37,20 +37,20 @@ export default function PaintWipe() {
         <motion.div style={{ clipPath: clip }} className="absolute inset-0 bg-charcoal text-white">
           <div className="mx-auto flex h-full max-w-7xl flex-col justify-center px-6">
             <p className="serif-display text-[clamp(2rem,4.5vw,4.4rem)]">A fresh start for your walls.</p>
-            <div className="mt-8 grid grid-cols-3 gap-4 md:gap-10">
+            <div className="mt-4 grid min-w-0 grid-cols-2 gap-3 sm:mt-8 sm:gap-4 md:grid-cols-3 md:gap-10">
               {featured.map((f, i) => (
-                <div key={f.id} className={i === 1 ? "md:translate-y-10" : ""}>
-                  <div className="relative flex h-[34vh] items-center justify-center">
+                <div key={f.id} className={i === 1 ? "min-w-0 md:translate-y-10" : i === 2 ? "col-span-2 mx-auto w-1/2 min-w-0 md:col-span-1 md:mx-0 md:w-full" : "min-w-0"}>
+                  <div className="relative flex h-[16svh] min-h-24 items-center justify-center md:h-[34vh]">
                     <div className="absolute h-44 w-44 rounded-full opacity-50 blur-3xl" style={{ background: f.glow }} />
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={f.image} alt={`${f.brand} ${f.name}`} loading="lazy" decoding="async" className="relative max-h-full object-contain drop-shadow-[0_24px_24px_rgba(0,0,0,0.6)]" />
+                    <img src={f.image} alt={`${f.brand} ${f.name}`} loading="lazy" decoding="async" className="relative max-h-full max-w-full object-contain drop-shadow-[0_24px_24px_rgba(0,0,0,0.6)]" />
                   </div>
-                  <p className="mt-3 text-sm font-medium">{f.name}</p>
+                  <p className="mt-2 break-words text-xs font-medium leading-snug sm:mt-3 sm:text-sm">{f.name}</p>
                   <p className="text-xs text-white/60">{f.brand}</p>
                 </div>
               ))}
             </div>
-            <Link href="/products" className="mt-10 w-fit rounded-full bg-white px-6 py-3 text-sm font-semibold text-charcoal transition hover:bg-ochre">Browse the paints</Link>
+            <Link href="/products" className="mt-6 w-fit rounded-full bg-white px-6 py-3 text-sm font-semibold text-charcoal transition hover:bg-ochre sm:mt-10">Browse the paints</Link>
           </div>
         </motion.div>
 
