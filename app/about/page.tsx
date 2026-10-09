@@ -3,9 +3,9 @@ import Image from "next/image";
 export const metadata = { title: "About Us | Siddhartha Suva Trade Link" };
 
 const team = [
-  { name: "Sindhu Adhikari", role: "Colour Consultant", photo: "/team/sindhu.svg" },
-  { name: "Utkrista Adhikari", role: "Paint Specialist", photo: "/team/utkrista.svg" },
-  { name: "Aryan Adhikari", role: "Store Assistant", photo: "/team/aryan.svg" },
+  { name: "Sindhu Adhikari", role: "Colour Consultant", photo: "/team/sindhu-adhikari.jpg", position: "50% 42%" },
+  { name: "Utkrista Adhikari", role: "Paint Specialist", photo: "/team/utkrista-adhikari.jpg", position: "72% center" },
+  { name: "Aryan Adhikari", role: "Store Assistant", photo: "/team/aryan-adhikari.jpg", position: "50% 38%" },
 ];
 
 const story = [
@@ -21,7 +21,7 @@ export default function AboutPage() {
       <section className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-6 md:grid-cols-2 md:gap-10 lg:gap-16">
         <div className="group relative mx-auto w-full max-w-[640px] md:mx-0 md:max-w-none">
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-charcoal" style={{ clipPath: "polygon(0 0, 100% 0, 100% 86%, 82% 100%, 0 100%)" }}>
-            <Image src="/team/ujjwal.svg" alt="Illustrated portrait of Ujjwal Adhikari" fill priority sizes="(min-width:768px) 58vw, 100vw" className="object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:saturate-150" />
+            <Image src="/team/ujjwal-adhikari.jpg" alt="Portrait of Ujjwal Adhikari" fill priority sizes="(min-width:1024px) 48vw, (min-width:640px) 45vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" style={{ objectPosition: "66% center" }} />
           </div>
         </div>
         <div className="pb-6 md:py-10">
@@ -41,7 +41,7 @@ export default function AboutPage() {
           {team.map((m, i) => (
             <article key={m.name} className={`group ${i === 1 ? "lg:mt-20" : i === 2 ? "lg:mt-8" : ""}`}>
               <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
-                <Image src={m.photo} alt={`Illustrated portrait of ${m.name}`} fill sizes="(min-width:768px) 30vw, 100vw" className="object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" />
+                <Image src={m.photo} alt={`Portrait of ${m.name}`} fill sizes="(min-width:1024px) 30vw, (min-width:640px) 45vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" style={{ objectPosition: m.position }} />
               </div>
               <h3 className="serif-display mt-4 text-3xl">{m.name}</h3>
               <p className="text-sm text-black/60">{m.role}</p>
