@@ -39,7 +39,7 @@ function Spiral() {
         const u = i / PER_ARM;
         const seed = Math.random();
         const angle = u * Math.PI * 5.2 + (a / ARMS) * Math.PI * 2;
-        const radius = 0.25 + u * 2.85 + (seed - 0.5) * 0.5 * (0.4 + u);
+        const radius = 0.25 + u * 3.9 + (seed - 0.5) * 0.85 * (0.4 + u);
         positions[k * 3] = Math.cos(angle) * radius;
         positions[k * 3 + 1] = Math.sin(angle) * radius;
         positions[k * 3 + 2] = (u - 0.5) * 3.4 + (seed - 0.5) * 1.4 + Math.sin(angle) * 0.2;
