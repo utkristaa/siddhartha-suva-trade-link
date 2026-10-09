@@ -18,18 +18,16 @@ export default function AboutPage() {
   return (
     <div className="pb-32 pt-32">
       {/* Founder spotlight */}
-      <section className="mx-auto grid max-w-7xl grid-cols-12 items-end gap-6 px-6">
-        <div className="group relative col-span-12 md:col-span-7">
+      <section className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-6 md:grid-cols-2 md:gap-10 lg:gap-16">
+        <div className="group relative mx-auto w-full max-w-[640px] md:mx-0 md:max-w-none">
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-charcoal" style={{ clipPath: "polygon(0 0, 100% 0, 100% 86%, 82% 100%, 0 100%)" }}>
             <Image src="/team/ujjwal.svg" alt="Illustrated portrait of Ujjwal Adhikari" fill priority sizes="(min-width:768px) 58vw, 100vw" className="object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:saturate-150" />
           </div>
-          <h1 className="serif-display relative z-10 mt-4 text-6xl leading-[0.8] text-charcoal md:pointer-events-none md:absolute md:-bottom-6 md:-right-10 md:mt-0 md:text-[clamp(3.4rem,10vw,9.5rem)] md:text-white/95">
-            Ujjwal<br />Adhikari
-          </h1>
         </div>
-        <div className="col-span-12 pt-12 pb-6 md:col-span-4 md:col-start-9 md:pt-0">
+        <div className="pb-6 md:py-10">
           <p className="text-sm font-semibold">Store Founder</p>
-          <p className="serif-display mt-5 text-3xl leading-[1.05] md:text-4xl">The right colour should feel good at home.</p>
+          <h1 className="serif-display mt-3 text-5xl leading-[0.82] text-charcoal sm:text-6xl lg:text-8xl">Ujjwal<br />Adhikari</h1>
+          <p className="serif-display mt-6 text-3xl leading-[1.05] md:text-4xl">The right colour should feel good at home.</p>
           <p className="mt-5 text-sm leading-relaxed text-black/65">
             We started with a straightforward aim: help people choose the right paint for their home, not the most expensive one. Our team can talk through colour, finish and the surface you are painting before you decide.
           </p>
@@ -37,11 +35,11 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="mx-auto mt-24 max-w-7xl px-6 md:mt-40">
+      <section className="mx-auto mt-24 max-w-7xl px-6 lg:mt-40">
         <h2 className="serif-display text-[clamp(2.4rem,6vw,5rem)]">The people behind the counter</h2>
-        <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((m, i) => (
-            <article key={m.name} className={`group ${i === 1 ? "md:mt-20" : i === 2 ? "md:mt-8" : ""}`}>
+            <article key={m.name} className={`group ${i === 1 ? "lg:mt-20" : i === 2 ? "lg:mt-8" : ""}`}>
               <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
                 <Image src={m.photo} alt={`Illustrated portrait of ${m.name}`} fill sizes="(min-width:768px) 30vw, 100vw" className="object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" />
               </div>
@@ -53,10 +51,10 @@ export default function AboutPage() {
       </section>
 
       {/* Storyboard */}
-      <section className="mt-24 bg-charcoal py-20 text-white md:mt-40 md:py-24">
+      <section className="mt-24 bg-charcoal py-20 text-white lg:mt-40 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="serif-display text-[clamp(3rem,9vw,8.5rem)]">From prep to final coat</h2>
-          <div className="mt-10 flex min-h-[480px] flex-col gap-3 md:mt-14 md:h-[70vh] md:min-h-[420px] md:flex-row">
+          <div className="mt-10 flex min-h-[480px] flex-col gap-3 md:mt-14 lg:h-[70vh] lg:min-h-[420px] lg:flex-row">
             {story.map((s) => (
               <article key={s.title} tabIndex={0} className="group relative flex-1 overflow-hidden transition-[flex] duration-700 ease-out hover:flex-[2.4] focus-visible:flex-[2.4]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -64,7 +62,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <h3 className="serif-display text-4xl">{s.title}</h3>
-                  <p className="mt-2 max-w-xs text-sm text-white/75 opacity-100 transition duration-500 md:opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100">{s.text}</p>
+                  <p className="mt-2 max-w-xs text-sm text-white/75 opacity-100 transition duration-500 lg:opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100">{s.text}</p>
                 </div>
               </article>
             ))}
