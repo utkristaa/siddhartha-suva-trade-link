@@ -23,7 +23,7 @@ export default function AboutPage() {
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-charcoal" style={{ clipPath: "polygon(0 0, 100% 0, 100% 86%, 82% 100%, 0 100%)" }}>
             <Image src="/team/ujjwal.svg" alt="Illustrated portrait of Ujjwal Adhikari" fill priority sizes="(min-width:768px) 58vw, 100vw" className="object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:saturate-150" />
           </div>
-          <h1 className="serif-display pointer-events-none absolute -bottom-6 left-4 z-10 text-[clamp(3.4rem,10vw,9.5rem)] leading-[0.8] text-charcoal drop-shadow-[0_10px_20px_rgba(0,0,0,0.08)] md:-right-10 md:left-auto md:text-white/95">
+          <h1 className="serif-display relative z-10 mt-4 text-6xl leading-[0.8] text-charcoal md:pointer-events-none md:absolute md:-bottom-6 md:-right-10 md:mt-0 md:text-[clamp(3.4rem,10vw,9.5rem)] md:text-white/95">
             Ujjwal<br />Adhikari
           </h1>
         </div>

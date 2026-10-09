@@ -16,7 +16,7 @@ html {
   scroll-behavior: auto;
 }
 body {
-  background: linear-gradient(180deg, #f5f1eb 0%, #f2ede5 18%, #f2ede5 42%, #232323 42%, #121212 100%);
+  background: #f5f1eb;
   color: var(--charcoal);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
