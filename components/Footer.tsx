@@ -28,15 +28,18 @@ export default function Footer() {
               </li>
               {PHONES.secondary.map((p) => (
                 <li key={p}>
-                  <a href={`tel:${p}`} aria-label={`Call ${p}`} className="flex min-h-11 items-center justify-end gap-4 transition-colors hover:text-white">
-                    <span className="tabular-nums text-white">{p}</span>
+                  <a href={`tel:${p}`} aria-label={`Call ${p}`} className="flex min-h-11 items-center justify-between gap-4 transition-colors hover:text-white">
+                    <span>Call</span><span className="tabular-nums text-white">{p}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <p className="pt-5 text-xs text-white/45">Siddhartha Suva Trade Link</p>
+        <div className="flex flex-col gap-2 pt-5 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>Siddhartha Suva Trade Link</p>
+          <p>Created by Utkrista</p>
+        </div>
       </div>
     </footer>
   );

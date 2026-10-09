@@ -13,13 +13,17 @@ export default function WhatsAppFab() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.2, duration: 0.7 }}
-      whileHover={{ scale: 1.04 }}
-      className="fixed bottom-5 right-5 z-50 flex items-center gap-3 rounded-full bg-charcoal py-3 pl-4 pr-5 text-sm font-medium text-white shadow-[0_18px_50px_-14px_rgba(0,0,0,0.6)]"
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      className="fixed bottom-4 right-4 z-50 flex min-h-14 items-center gap-3 rounded-full border border-white/15 bg-charcoal py-2 pl-2 pr-5 text-sm font-semibold text-white shadow-[0_14px_36px_-14px_rgba(0,0,0,0.65)] transition-colors hover:bg-[#202020] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
     >
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12.04 2a9.9 9.9 0 0 0-8.45 15.1L2 22l5.04-1.55A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.3 14.97l-.3-.19-2.99.92.96-2.9-.2-.31A8.1 8.1 0 0 1 12.04 3.8Zm-3.2 3.7c-.18 0-.47.07-.72.34-.25.27-.95.93-.95 2.27s.97 2.63 1.1 2.81c.14.18 1.9 3.03 4.7 4.13 2.32.91 2.8.73 3.3.68.5-.05 1.63-.67 1.86-1.31.23-.64.23-1.19.16-1.31-.07-.11-.25-.18-.52-.32-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.2-1.35-.81-.72-1.36-1.62-1.52-1.89-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.6-1.5-.84-2.05-.22-.52-.44-.45-.61-.46Z" />
-      </svg>
-      <span className="hidden sm:inline">WhatsApp</span>
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-[#10251a]">
+        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20.2 11.7a8.2 8.2 0 0 1-12.1 7.1L3 20l1.3-4.8a8.2 8.2 0 1 1 15.9-3.5Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M8.3 7.8c-.3.4-.8 1-.8 2s.7 2.3 1.8 3.6c1.2 1.4 2.6 2.3 4 2.8 1.5.5 2.2.3 2.7-.3.3-.4.6-1 .5-1.4l-2.1-1-.9 1.1c-.6-.2-1.4-.7-2.1-1.3-.7-.6-1.3-1.4-1.6-2l.9-.9-1-2.2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </span>
+      <span>WhatsApp</span>
     </motion.a>
   );
 }

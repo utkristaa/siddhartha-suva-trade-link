@@ -18,14 +18,18 @@ export default function ContactPage() {
           <h1 className="serif-display text-[clamp(3.4rem,9vw,8rem)]">Start a conversation</h1>
           <dl className="mt-10 space-y-6 text-sm">
             <div>
-              <dt className="text-black/55">Primary contact and WhatsApp</dt>
-              <dd className="mt-1 font-sans text-2xl font-semibold tabular-nums tracking-normal sm:text-3xl"><a className="break-words" href={whatsappLink()} target="_blank" rel="noopener noreferrer">{PHONES.primary}</a></dd>
+              <dt className="text-black/55">Primary contact</dt>
+              <dd className="mt-1 font-sans text-2xl font-semibold tabular-nums tracking-normal sm:text-3xl">{PHONES.primary}</dd>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-full bg-[#25D366] px-4 text-sm font-semibold text-[#10251a]">WhatsApp</a>
+                <a href={`tel:${PHONES.primary}`} className="inline-flex min-h-11 items-center rounded-full border border-charcoal px-4 text-sm font-semibold text-charcoal">Call</a>
+              </div>
             </div>
             <div>
               <dt className="text-black/55">Other phone lines</dt>
               <dd className="mt-1 flex flex-wrap gap-x-5 gap-y-2 font-sans text-xl font-semibold tabular-nums tracking-normal sm:text-2xl">
                 {PHONES.secondary.map((p) => (
-                  <a key={p} className="break-words" href={`tel:${p}`}>{p}</a>
+                  <a key={p} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-black/20 px-4 text-base font-semibold" href={`tel:${p}`}><span className="text-xs font-medium text-black/55">Call</span>{p}</a>
                 ))}
               </dd>
             </div>
