@@ -6,15 +6,13 @@ export const metadata = { title: "Portfolio | Siddhartha Suva Trade Link" };
 export default function PortfolioPage() {
   return (
     <>
-      <section className="relative flex min-h-screen items-center overflow-hidden bg-charcoal px-6 pb-16 pt-28 text-white">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 md:grid-cols-12">
-          <div className="md:col-span-6">
-            <h1 className="serif-display text-[clamp(3.6rem,11vw,10rem)]">Port&shy;folio</h1>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/65">A walk through painted rooms: bedroom, living room, dining and kitchen. Hover the reel for controls.</p>
-          </div>
-          <div className="md:col-span-6 md:pr-4">
-            <VideoReel className="max-w-[560px]" />
-          </div>
+      <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-charcoal px-6 pb-16 pt-32 text-white sm:pb-20 md:items-center">
+        <VideoReel background />
+        <div aria-hidden="true" className="absolute inset-0 z-[1] bg-gradient-to-r from-black/75 via-black/35 to-black/10" />
+        <div aria-hidden="true" className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 via-transparent to-black/15" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl">
+          <h1 className="serif-display max-w-4xl text-[clamp(3.6rem,11vw,10rem)]">Portfolio</h1>
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/85 sm:text-base">A moving look at colour, finish and the rooms they bring to life.</p>
         </div>
       </section>
 

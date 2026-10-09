@@ -19,13 +19,13 @@ export default function ContactPage() {
           <dl className="mt-10 space-y-6 text-sm">
             <div>
               <dt className="text-black/55">Primary contact and WhatsApp</dt>
-              <dd className="serif-display mt-1 text-4xl"><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">{PHONES.primary}</a></dd>
+              <dd className="mt-1 font-sans text-2xl font-semibold tabular-nums tracking-normal sm:text-3xl"><a className="break-words" href={whatsappLink()} target="_blank" rel="noopener noreferrer">{PHONES.primary}</a></dd>
             </div>
             <div>
               <dt className="text-black/55">Other phone lines</dt>
-              <dd className="serif-display mt-1 text-3xl">
+              <dd className="mt-1 flex flex-wrap gap-x-5 gap-y-2 font-sans text-xl font-semibold tabular-nums tracking-normal sm:text-2xl">
                 {PHONES.secondary.map((p, i) => (
-                  <span key={p}>{i > 0 && <span className="mx-3 text-black/30">|</span>}<a href={`tel:${p}`}>{p}</a></span>
+                  <a key={p} className="break-words" href={`tel:${p}`}>{p}</a>
                 ))}
               </dd>
             </div>
